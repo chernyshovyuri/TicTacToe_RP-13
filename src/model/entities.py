@@ -41,6 +41,21 @@ class Field:
 
         self.__cells = []
 
+
+    def try_make_move(self, x: int, y: int, marker) -> bool:
+        if x < 0 or x >= self.__rows: raise ValueError()
+        if y < 0 or y >= self.__columns: raise ValueError()
+
+        if marker != MARKER_CROSS and marker != MARKER_ZERO: raise ValueError()
+
+        cell = self.__cells[x][y]
+
+        if not cell.is_empty(): return False
+
+        cell.set_marker(marker)
+
+        return True
+
     def create(self):
 
         for i in range(0, self.__rows, 1):
@@ -55,7 +70,3 @@ class Field:
         for i in range(0, self.__rows, 1):
             for j in range(0, self.__columns, 1):
                 self.__cells[i][j].reset()
-
-
-    def make_move(self):
-        pass
