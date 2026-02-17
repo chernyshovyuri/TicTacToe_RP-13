@@ -42,6 +42,13 @@ class Field:
         self.__cells = []
 
 
+    def __get_rows(self):
+        return self.__rows
+
+    def __get_columns(self):
+        return self.__columns
+
+
     def try_make_move(self, x: int, y: int, marker) -> bool:
         if x < 0 or x >= self.__rows: raise ValueError()
         if y < 0 or y >= self.__columns: raise ValueError()
