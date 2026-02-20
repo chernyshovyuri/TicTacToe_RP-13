@@ -1,8 +1,8 @@
 from __future__ import annotations
 
-from dataclasses import field
-
 from model.entities import Field
+from src.model.constants import MARKER_ZERO
+from src.model.constants import MARKER_CROSS
 from src.model.constants import MARKER_EMPTY
 
 
@@ -26,9 +26,9 @@ class Referee:
         for row in self.__field:
             for elem in row:
 
-                if elem == 'MARKER_EMPTY' or elem == '': return False
+                if elem == MARKER_EMPTY or elem == '': return False
 
-                if elem not in ('MARKER_CROSS', 'MARKER_ZERO'):  return False
+                if elem not in (MARKER_CROSS, MARKER_ZERO):  return False
 
 
         return True
@@ -41,7 +41,7 @@ class Referee:
 
             if  new_row == '':
                 continue
-            if new_row not in ('MARKER_ZERO', 'MARKER_CROSS'):
+            if new_row not in (MARKER_ZERO, MARKER_CROSS):
                 return False
             is_win = True
             for elem in row:
@@ -62,7 +62,7 @@ class Referee:
 
             if new_column == '':
                 continue
-            if new_column not in ('MARKER_ZERO', 'MARKER_CROSS'):
+            if new_column not in (MARKER_ZERO, MARKER_CROSS):
                 return False
 
             is_win = True
@@ -83,7 +83,7 @@ class Referee:
 
         if new_diagonal == '':  return False
 
-        if new_diagonal not in ('MARKER_ZERO', 'MARKER_CROSS'):  return False
+        if new_diagonal not in (MARKER_ZERO, MARKER_CROSS):  return False
 
         is_win = True
 
@@ -105,7 +105,7 @@ class Referee:
 
         if new_sec_diagonal == '': return False
 
-        if new_sec_diagonal not in ('MARKER_ZERO', 'MARKER_CROSS'): return False
+        if new_sec_diagonal not in (MARKER_ZERO, MARKER_CROSS): return False
 
         is_win = True
 

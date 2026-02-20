@@ -2,6 +2,19 @@ from constants import *
 
 class Cell:
 
+    class RecordCell:
+
+        __x: int
+        __y: int
+        marker: str
+
+        def __init__(self, x: int, y: int, marker: str):
+
+            self.__x = x
+            self.__y = y
+            self.__marker = marker
+
+
     __x: int
     __y: int
 
@@ -27,6 +40,10 @@ class Cell:
 
     def reset(self) -> None:
         self.__marker = MARKER_EMPTY
+
+
+    def get_record(self) -> RecordCell:
+        return Cell.RecordCell(self.__x, self.__y, self.__marker)
 
 
 class Field:
@@ -77,3 +94,20 @@ class Field:
         for i in range(0, self.__rows, 1):
             for j in range(0, self.__columns, 1):
                 self.__cells[i][j].reset()
+
+
+    def _get_cell(self) -> list[list[Cell.RecordCell]]:
+
+        new_cell = []
+
+        for x in range(self.__rows):
+            new_cell.append([])
+            for y in range(self.__columns):
+                cell = self.__cells[x][y]
+
+                new_cell[x].append(Cell.get_record(cell))
+
+        return new_cell
+
+
+
