@@ -36,7 +36,7 @@ class Referee:
 
     def __check_win_by_row(self) -> bool:
 
-        for row in self.__field:
+        for row in self.__field.get_rows():
             new_row = row[0]
 
             if  new_row == '':
@@ -57,7 +57,7 @@ class Referee:
 
     def __check_win_by_column(self) -> bool:
 
-        for column in range(len(self.__field)):
+        for column in range(len(self.__field.get_columns())):
             new_column = self.__field[0][column]
 
             if new_column == '':
@@ -66,7 +66,7 @@ class Referee:
                 return False
 
             is_win = True
-            for elem in range(len(self.__field)):
+            for elem in range(len(self.__field.get_columns())):
                 if new_column != self.__field[elem][column]:
                     is_win = False
                     break
@@ -87,10 +87,11 @@ class Referee:
 
         is_win = True
 
-        for i in range(len(self.__field)):
-            if new_diagonal != self.__field[i][i]:
-                is_win = False
-                break
+        for i in range(len(self.__field.get_rows())):
+            for j in range(len(self.__field.get_columns())):
+                if new_diagonal != self.__field[i][i]:
+                    is_win = False
+                    break
 
         if is_win:
             return True
@@ -130,10 +131,13 @@ class Game:
 
 
     def set_up(self) -> None:
-        pass
 
-    def make_move(self, x, y) -> None:
-        pass
+        self.__field.create()
+        self.__current_player = MARKER_CROSS
+
+    def make_move(self, x: int, y: int, marker) -> None:
+
+        self.__field.try_make_move()
 
     def finish(self) -> None:
         pass

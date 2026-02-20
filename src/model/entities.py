@@ -59,10 +59,10 @@ class Field:
         self.__cells = []
 
 
-    def __get_rows(self):
+    def get_rows(self):
         return self.__rows
 
-    def __get_columns(self):
+    def get_columns(self):
         return self.__columns
 
 
@@ -96,7 +96,7 @@ class Field:
                 self.__cells[i][j].reset()
 
 
-    def _get_cell(self) -> list[list[Cell.RecordCell]]:
+    def get_cell(self) -> list[list[Cell.RecordCell]]:
 
         new_cell = []
 
